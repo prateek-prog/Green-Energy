@@ -9,14 +9,14 @@ model_path = os.path.join("models", "mlp_model.joblib")
 scaler_path = os.path.join("models", "scaler.joblib")
 columns_path = os.path.join("models", "columns.joblib")
 
-# Check if files exist before loading
-if os.path.exists(model_path) and os.path.exists(scaler_path) and os.path.exists(columns_path):
-    model = joblib.load(open(model_path, "rb"))
-    scaler = joblib.load(open(scaler_path, "rb"))
-    columns = joblib.load(open(columns_path, "rb"))
-else:
-    st.error("❌ One or more model files are missing. Please check your 'models/' folder.")
-
+try:
+    model = joblib.load(model_path)
+    scaler = joblib.load(scaler_path)
+    columns = joblib.load(columns_path)
+except Exception as e:
+    st.error(f"❌ Error loading model files: {e}")
+    st.stop()
+    
 st.set_page_config(page_title="Carbon Footprint Predictor", page_icon="🌱")
 st.title("🌍 Carbon Footprint Predictor")
 st.write("Estimate your monthly carbon footprint based on lifestyle inputs.")
