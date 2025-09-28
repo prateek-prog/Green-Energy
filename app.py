@@ -5,9 +5,9 @@ import joblib
 import os
 
 # Load model, scaler, and columns
-model = joblib.load(open(os.path.join("models", "mlp_model.sav"), "rb"))
-scaler = joblib.load(open(os.path.join("models", "scaler.sav"), "rb"))
-columns = joblib.load(open(os.path.join("models", "columns.sav"), "rb"))
+model = joblib.load(open(os.path.join("models", "mlp_model.joblib"), "rb"))
+scaler = joblib.load(open(os.path.join("models", "scaler.joblib"), "rb"))
+columns = joblib.load(open(os.path.join("models", "columns.joblib"), "rb"))
 if os.path.exists(model) and os.path.exists(scaler) and os.path.exists(columns):
     model = joblib.load(open(model, "rb"))
     scaler = joblib.load(open(scaler, "rb"))

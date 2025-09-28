@@ -33,9 +33,9 @@ except Exception as e:
     exit(1)  # Stop if we can't create folder
 
 # ✅ Define file paths
-model_path = os.path.join(model_dir, "mlp_model.sav")
-scaler_path = os.path.join(model_dir, "scaler.sav")
-columns_path = os.path.join(model_dir, "columns.sav")
+model_path = os.path.join(model_dir, "mlp_model.joblib")
+scaler_path = os.path.join(model_dir, "scaler.joblib")
+columns_path = os.path.join(model_dir, "columns.joblib")
 
 # ✅ Save model
 try:
