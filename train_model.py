@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-import pickle
+import joblib
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestRegressor
 
@@ -40,7 +40,7 @@ columns_path = os.path.join(model_dir, "columns.sav")
 # ✅ Save model
 try:
     with open(model_path, "wb") as f_model:
-        pickle.dump(model, f_model)
+        joblib.dump(model, f_model)
     print("✅ Model saved successfully.")
 except Exception as e:
     print(f"❌ Failed to save model: {e}")
@@ -48,7 +48,7 @@ except Exception as e:
 # ✅ Save scaler
 try:
     with open(scaler_path, "wb") as f_scaler:
-        pickle.dump(scaler, f_scaler)
+       joblib.dump(scaler, f_scaler)
     print("✅ Scaler saved successfully.")
 except Exception as e:
     print(f"❌ Failed to save scaler: {e}")
@@ -56,7 +56,7 @@ except Exception as e:
 # ✅ Save column names
 try:
     with open(columns_path, "wb") as f_columns:
-        pickle.dump(X.columns.tolist(), f_columns)
+       joblib.dump(X.columns.tolist(), f_columns)
     print("✅ Columns saved successfully.")
 except Exception as e:
     print(f"❌ Failed to save columns: {e}")

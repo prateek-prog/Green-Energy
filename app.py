@@ -1,17 +1,17 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import pickle
+import joblib
 import os
 
 # Load model, scaler, and columns
-model = pickle.load(open(os.path.join("models", "mlp_model.sav"), "rb"))
-scaler = pickle.load(open(os.path.join("models", "scaler.sav"), "rb"))
-columns = pickle.load(open(os.path.join("models", "columns.sav"), "rb"))
+model = joblib.load(open(os.path.join("models", "mlp_model.sav"), "rb"))
+scaler = joblib.load(open(os.path.join("models", "scaler.sav"), "rb"))
+columns = joblib.load(open(os.path.join("models", "columns.sav"), "rb"))
 if os.path.exists(model) and os.path.exists(scaler) and os.path.exists(columns):
-    model = pickle.load(open(model, "rb"))
-    scaler = pickle.load(open(scaler, "rb"))
-    columns = pickle.load(open(columns, "rb"))
+    model = joblib.load(open(model, "rb"))
+    scaler = joblib.load(open(scaler, "rb"))
+    columns = joblib.load(open(columns, "rb"))
 else:
     st.error("❌ One or more model files are missing. Please check your 'models/' folder.")
 st.set_page_config(page_title="Carbon Footprint Predictor", page_icon="🌱")
