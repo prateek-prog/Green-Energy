@@ -33,9 +33,9 @@ except Exception as e:
     exit(1)  # Stop if we can't create folder
 
 # ✅ Define file paths
-model_path = os.path.join(model_dir, "mlp_model.joblib")
-scaler_path = os.path.join(model_dir, "scaler.joblib")
-columns_path = os.path.join(model_dir, "columns.joblib")
+model_path = os.path.join(model_dir, "mlp.joblib")
+scaler_path = os.path.join(model_dir, "scale.joblib")
+columns_path = os.path.join(model_dir, "column.joblib")
 
 # ✅ Save model
 try:
@@ -53,7 +53,7 @@ try:
 except Exception as e:
     print(f"❌ Failed to save scaler: {e}")
 
-# ✅ Save column names
+ #✅ Save column names
 try:
     with open(columns_path, "wb") as f_columns:
        joblib.dump(X.columns.tolist(), f_columns)
