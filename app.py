@@ -12,7 +12,7 @@ import base64
 from functions import *
 
 # --- Page Setup ---
-st.set_page_config(layout="wide", page_title="Carbon Footprint Calculator", page_icon="./media/favicon.ico")
+st.set_page_config(layout="wide", page_title="Carbon Footprint Calculator", page_icon="🌱")
 
 # --- Background & Styling ---
 def get_base64(bin_file):
