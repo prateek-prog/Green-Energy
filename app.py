@@ -111,20 +111,23 @@ df = component()
 data = input_preprocessing(df)
 
 # --- Load Model & Scaler ---
-scale_path = "./models/scale.joblib"
-model_path = "./models/model.joblib"
+model_path = os.path.join("models", "mlp_model.joblib")
+scaler_path = os.path.join("models", "scaler.joblib")
+columns_path = os.path.join("models", "columns.joblib")
 
-if os.path.exists(scale_path) and os.path.exists(model_path):
-    ss = joblib.load(scale_path)
+try:
     model = joblib.load(model_path)
-else:
-    st.error("❌ Model or scaler file missing.")
+    scaler = joblib.load(scaler_path)
+    columns = joblib.load(columns_path)
+except Exception as e:
+    st.error(f"❌ Error loading model files: {e}")
     st.stop()
+
 
 # --- Prediction ---
 try:
     sample_df = pd.DataFrame(data, index=[0])
-    prediction = round(np.exp(model.predict(ss.transform(sample_df))[0]))
+    prediction = round(np.exp(model.predict(scaler.transform(sample_df))[0]))
 except Exception as e:
     st.error(f"Prediction failed: {e}")
     st.stop()
@@ -133,7 +136,7 @@ except Exception as e:
 column1, column2 = tab1.columns(2)
 _, resultbutton, _ = tab5.columns([1, 1, 1])
 if resultbutton.button(" ", type="secondary"):
-    tab_result.image(chart(model, ss, sample_df, prediction), use_column_width="auto")
+    tab_result.image(chart(model, scaler, sample_df, prediction), use_column_width="auto")
     click_element('tab-2')
 
 # --- Did You Know Popup ---
